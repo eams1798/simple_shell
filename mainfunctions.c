@@ -13,7 +13,7 @@ char **tokenizer(char *buffer, char *delimiter)
 		return (NULL);
 	if (*buffer == '\n' || *buffer == ' ')
 		return (NULL);
-	while ((tokens[i] = _strtok_all(buffer, delimiter)) != NULL)
+	while ((tokens[i] = strtok(buffer, delimiter)) != NULL)
 	{
 		i++;
 		if (i == mcount)
