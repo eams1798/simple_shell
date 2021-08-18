@@ -1,14 +1,8 @@
 #include "new_shell.h"
 
-void list_files(vars_t *vars)
+void free_vars(vars_t *vars)
 {
-	(void)vars;
-	printf("ls command not implemented, but shows a successful message\n");
-}
-
-void file_exit(vars_t *vars)
-{
-	int i = 0;
+        int i = 0;
 
 	for (; vars->arguments[i] != NULL; i++);
 	if (i != 0)
@@ -21,6 +15,17 @@ void file_exit(vars_t *vars)
 	}
 	free(vars->arguments);
 	vars->buffer = NULL;
+}
+
+void list_files(vars_t *vars)
+{
+	(void)vars;
+	printf("ls command not implemented, but shows a successful message\n");
+}
+
+void file_exit(vars_t *vars)
+{
+	free_vars(vars);
 	exit(0);
 }
 

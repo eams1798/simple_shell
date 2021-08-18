@@ -11,7 +11,10 @@ int main()
 	{
 		vars.arguments = tokenizer(vars.buffer, delimiter);
 		if (vars.arguments != NULL)
+		{
 			(match(&vars))(&vars);
+			free_vars(&vars);
+		}
 		printf("$ ");
 	}
 	return (0);

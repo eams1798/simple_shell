@@ -23,5 +23,6 @@ void (*match(vars_t *vars))(vars_t *);
 void file_exit(vars_t *vars);
 void list_files(vars_t *vars);
 void err_invarg(vars_t *vars);
+void free_vars(vars_t *vars);
 
 #endif
