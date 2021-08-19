@@ -14,6 +14,8 @@ void free_vars(vars_t *vars)
 		}
 	}
 	free(vars->arguments);
+	free(vars->buffer);
+	vars->arguments = NULL;
 	vars->buffer = NULL;
 }
 

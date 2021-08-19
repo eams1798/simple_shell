@@ -18,13 +18,13 @@ typedef struct argfunc
 	void (*func)(vars_t *);
 } func_a;
 
-char **tokenizer(char *buffer, char *delimiter);
+int _strlen(char *str);
+char **_strtok_all(char *buffer, char *delimiter);
+char *cure_buffer(char *buffer);
 void (*match(vars_t *vars))(vars_t *);
 void file_exit(vars_t *vars);
 void list_files(vars_t *vars);
 void err_invarg(vars_t *vars);
 void free_vars(vars_t *vars);
-char **_strtok_all(char *buffer, char *delimiter);
-char *cure_buffer(char *buffer);
-int _strlen(char *str);
+
 #endif

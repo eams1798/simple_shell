@@ -11,7 +11,9 @@ int main()
 	while (getline(&(vars.buffer), &buffer_len, stdin) != -1)
 	{
 		buffercur = cure_buffer(vars.buffer);
-		vars.arguments = _strtok_all(buffercur, delimiter);
+		if (buffercur != NULL)
+			vars.arguments = _strtok_all(buffercur, delimiter);
+		free(buffercur);
 		if (vars.arguments != NULL)
 		{
 			(match(&vars))(&vars);
