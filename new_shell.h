@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 typedef struct variables
 {
@@ -18,9 +20,14 @@ typedef struct argfunc
 	void (*func)(vars_t *);
 } func_a;
 
-int _strlen(char *str);
+extern char** environ;
+int _strlen(char str[]);
+char *getenv_PATH();
+void add_backslash(char **paths);
+char **get_PATHS();
 char **_strtok_all(char *buffer, char *delimiter);
 char *cure_buffer(char *buffer);
+int match_sys(vars_t *vars);
 void (*match(vars_t *vars))(vars_t *);
 void file_exit(vars_t *vars);
 void list_files(vars_t *vars);

@@ -1,6 +1,6 @@
 #include "new_shell.h"
 
-int _strlen(char *str)
+int _strlen(char str[])
 {
 	int i;
 
@@ -116,7 +116,7 @@ char **_strtok_all(char *buffer, char *delimiter)
 			tokens[i] = NULL;
 			break;
 		}
-		while (*ptr != ' ' && *ptr != '\n')
+		while (*ptr != delimiter[0] && *ptr != delimiter[1])
 		{
 			k++;
 			ptr++;
@@ -137,7 +137,7 @@ char **_strtok_all(char *buffer, char *delimiter)
 	{
 		if (*ptr2 == '\0')
 			break;
-		while (*ptr2 != ' ' && *ptr2 != '\n')
+		while (*ptr2 != delimiter[0] && *ptr2 != delimiter[1])
 		{
 			tokens[i][k] = *ptr2;
 			ptr2++;

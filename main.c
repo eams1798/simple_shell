@@ -16,7 +16,10 @@ int main()
 		free(buffercur);
 		if (vars.arguments != NULL)
 		{
-			(match(&vars))(&vars);
+			if (strcmp(vars.arguments[0], "exit") == 0)
+				file_exit(&vars);
+			if (match_sys(&vars) == 0)
+				err_invarg(&vars);
 			free_vars(&vars);
 		}
 		printf("$ ");
