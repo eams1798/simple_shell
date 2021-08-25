@@ -104,11 +104,19 @@ int match_sys(vars_t *vars)
 	szcmd = _strlen(cmd);
 	for (i = 0; envpath[i] != NULL; i++)
 	{
-		szpth = _strlen(envpath[i]);
-		size = szpth + szcmd + 1;
-		strpath = realloc(strpath, size * sizeof(char));
-		_strcpy(strpath, envpath[i]);
-		_strcat(strpath, cmd);
+		if (vars->arguments[0][0] != '/')
+		{
+			szpth = _strlen(envpath[i]);
+			size = szpth + szcmd + 1;
+			strpath = realloc(strpath, size * sizeof(char));
+			 _strcpy(strpath, envpath[i]);
+			 _strcat(strpath, cmd);
+		}
+		else
+		{
+			strpath = realloc(strpath, (szcmd + 1) * sizeof(char));
+			_strcpy(strpath, cmd);
+		}
 		if (access(strpath, F_OK) == 0)
 		{
 			done = execcmd(strpath, vars, environ);
