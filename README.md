@@ -49,10 +49,15 @@ All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wal
 All files should end with a new line
 
 A README.md file, at the root of the folder of the project is mandatory
+
 Code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
+
 Shell should not have any memory leaks
+
 No more than 5 functions per file
+
 All header files should be include guarded
+
 Use system calls only when you need to
 
 ## Examples
@@ -79,16 +84,18 @@ output:
 input:
 
 root@9eda536ae174:~/shell/simple_shell/simple_shell# ./hsh
+
 $ qwerty
 
 output:
 
 error: command not found
+
 $
 
 input:
 
-root@9eda536ae174:~/shell/simple_shell/simple_shell# ./hsh
+root@9eda536ae174:~/shell/simple_shell/simple_shell# ./hsh <br>
 $ pwd
 
 output:
