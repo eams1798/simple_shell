@@ -33,5 +33,5 @@ void file_exit(vars_t *vars)
 
 void err_invarg(vars_t *vars)
 {
-	printf("%s: command not found\n", vars->arguments[0]);
+	printf("%s: command not found (func1)\n", vars->arguments[0]);
 }

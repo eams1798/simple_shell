@@ -1,11 +1,11 @@
+#define _GNU_SOURCE
 #include "new_shell.h"
-
 int main()
 {
 	vars_t vars = {NULL, NULL};
 	size_t buffer_len = 0;
 	char *delimiter =  " \n";
-	char *buffercur;	
+	char *buffercur;
 
 	printf("$ ");
 	while (getline(&(vars.buffer), &buffer_len, stdin) != -1)
@@ -22,7 +22,7 @@ int main()
 				err_invarg(&vars);
 			free_vars(&vars);
 		}
-		printf("$ ");
+		printf("cisfun$ ");
 	}
 	return (0);
 }

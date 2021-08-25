@@ -1,4 +1,7 @@
+#define _POSIX_SOURCE
 #include "new_shell.h"
+#include <signal.h>
+#include <errno.h>
 
 char *getenv_PATH()
 {
@@ -45,17 +48,18 @@ char **get_PATHS()
 	paths = _strtok_all(envpath, delimiter);
 	free(envpath);
 	add_backslash(paths);
-	return(paths);
+	return (paths);
 }
 
 int match_sys(vars_t *vars)
 {
-	pid_t child = fork();
+	pid_t child;
 	char **envpath = get_PATHS();
 	char *strpath = malloc(1);
 	char *cmd = vars->arguments[0];
-	int szcmd, szpth, size, exe, status, i, done;
+	int szcmd, szpth, size, i, done, status;
 
+	child = fork();
 	szcmd = _strlen(cmd);
 	for (i = 0; envpath[i] != NULL; i++)
 	{
@@ -67,22 +71,32 @@ int match_sys(vars_t *vars)
 		if (access(strpath, F_OK) == 0)
 		{
 			if (child == 0)
-				exe = execve(strpath, vars->arguments, environ);
-			else
-				wait(&status);
-			if (exe == -1)
 			{
-				perror("Command could not be executed");
-				done = -1;
+				execve(strpath, vars->arguments, environ);
+				exit(errno);
+				break;
 			}
-			break;
-		}
+			else if (child < 0)
+			{	
+				perror("hsh");
+				break;
+			}
+			else
+			{
+				wait(&status);
+				break;
+			}
+		}	
 	}
 	free(strpath);
 	if (envpath[i] == NULL)
+	{
 		done = 0;
+	}
 	else
+	{
 		done = 1;
+	}
 	free(envpath);
 	cmd = NULL;
 	return (done);
