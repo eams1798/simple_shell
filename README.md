@@ -13,7 +13,6 @@ This project is about to create an own simple shell as a command interpreter for
 
 ## Files
 
-### Header
 * [README.md](https://github.com/estefanomisme/simple_shell/blob/main/README.md)
 This file
 
