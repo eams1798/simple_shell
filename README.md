@@ -1,22 +1,22 @@
-# Project Title
+<p align="center">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLtL_ToHLEo_BWFxD-yf32Ux3zfsH_NPc8Qw&usqp=CAU" width="225" height="175">
 
-Simple overview of use/purpose.
+# Simple Shell Project - Command Interpreter
+
+## BACKGROUND
+This is a collaboration project between two <a=href="https://www.holbertonschool.com/">[Holberton School]</a> students 
+from Cohort 15 PER-0621, Lima Perú
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project is about to create an own simple shell as a command interpreter for system.
 
-## Getting Started
+## Files
 
-### Dependencies
+### Header
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* [holberton.h](https://github.com/Villasdaniel/simple_shell/blob/master/holberton.h)
+Where prototypes and global variables are stored.
 
 ### Executing program
 
