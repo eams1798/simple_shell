@@ -1,6 +1,9 @@
 #define _GNU_SOURCE
-#include "new_shell.h"
-int main()
+/**
+ * main - Process inputs of new shell
+ * Return: Nothing
+ */
+int main(void)
 {
 	vars_t vars = {NULL, NULL};
 	size_t buffer_len = 0;

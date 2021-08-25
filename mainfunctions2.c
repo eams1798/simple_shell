@@ -2,7 +2,10 @@
 #include "new_shell.h"
 #include <signal.h>
 #include <errno.h>
-
+/**
+ * getenv_PATH - get list of PATHs
+ * Return: string with PATHs
+ */
 char *getenv_PATH()
 {
 	char** var;
@@ -25,7 +28,11 @@ char *getenv_PATH()
 	envpath += 5;
 	return (envpath);
 }
-
+/**
+ * add_backslash - Add slash at the end of string
+ * @paths: String to process
+ * Return: Nothing
+ */
 void add_backslash(char **paths)
 {
 	int i, sz;
@@ -37,7 +44,10 @@ void add_backslash(char **paths)
 		strcat(paths[i], "/");
 	}
 }
-
+/**
+ * get_PATHS - get and tokenizes paths
+ * Return: Token of Paths
+ */
 char **get_PATHS()
 {
 	char **paths;
@@ -51,7 +61,12 @@ char **get_PATHS()
 	add_backslash(paths);
 	return (paths);
 }
-
+/**
+ * match_sys - Execute command on the new shell
+ * @vars: Struct with buffer elements
+ * Return: 1: SUCCESS
+		2: FAILURE	
+ */
 int match_sys(vars_t *vars)
 {
 	pid_t child;

@@ -1,5 +1,9 @@
 #include "new_shell.h"
-
+/**
+ * _strlen - Calculate length of string
+ * @str: String to process
+ * Return: Length of given string
+ */
 int _strlen(char str[])
 {
 	int i;
@@ -7,7 +11,11 @@ int _strlen(char str[])
 	for (i = 0; str[i] != '\0'; i++);
 	return (i);
 }
-
+/**
+ * cure_buffer - Clean buffer of extra blank spaces
+ * @buffer: Buffer to process
+ * Return: buffer cured
+ */
 char *cure_buffer(char *buffer)
 {
 	int i, size = _strlen(buffer);
@@ -85,7 +93,12 @@ char *cure_buffer(char *buffer)
 	free(aux);
 	return(cure);
 }
-
+/**
+ * _strok_all - Tokenize buffers with given parameter
+ * @buffer: buffer to process
+ * @delimeter: string that will separate tokens
+ * Return: Array of tokens
+ */
 char **_strtok_all(char *buffer, char *delimiter)
 {
 	int i, j, ctok = 0, k = 0;
