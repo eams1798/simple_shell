@@ -22,7 +22,7 @@ int main()
 				err_invarg(&vars);
 			free_vars(&vars);
 		}
-		printf("cisfun$ ");
+		printf("$ ");
 	}
 	return (0);
 }

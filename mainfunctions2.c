@@ -7,15 +7,16 @@ char *getenv_PATH()
 {
 	char** var;
 	char* envpath;
-	char ph[4];
-
+/*	char ph[4];
+*/
 	for (var = environ; *var != NULL; var++)
 	{
-		ph[0] = (*var)[0];
+/*		ph[0] = (*var)[0];
 		ph[1] = (*var)[1];
 		ph[2] = (*var)[2];
 		ph[3] = (*var)[3];
-		if (strcmp(ph, "PATH") == 0)
+*/
+		if (strncmp(*var, "PATH", 4) == 0)
 		{
 			envpath = *var;
 			break;
@@ -59,7 +60,6 @@ int match_sys(vars_t *vars)
 	char *cmd = vars->arguments[0];
 	int szcmd, szpth, size, i, done, status;
 
-	child = fork();
 	szcmd = _strlen(cmd);
 	for (i = 0; envpath[i] != NULL; i++)
 	{
@@ -70,6 +70,7 @@ int match_sys(vars_t *vars)
 		strcat(strpath, cmd);
 		if (access(strpath, F_OK) == 0)
 		{
+			child = fork();
 			if (child == 0)
 			{
 				execve(strpath, vars->arguments, environ);
