@@ -83,15 +83,12 @@ output:
 
 input:
 
-root@9eda536ae174:~/shell/simple_shell/simple_shell# ./hsh
-
+root@9eda536ae174:~/shell/simple_shell/simple_shell# ./hsh <br>
 $ qwerty
 
 output:
 
 error: command not found
-
-$
 
 input:
 
