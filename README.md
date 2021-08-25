@@ -4,7 +4,7 @@
 # Simple Shell Project - Command Interpreter
 
 ## BACKGROUND
-This is a collaboration project between two <a=href="https://www.holbertonschool.com/">[Holberton School]</a> students 
+This is a collaboration project between two [Holberton School](https://www.holbertonschool.com/) students 
 from Cohort 15 PER-0621, Lima Perú
 
 ## Description
