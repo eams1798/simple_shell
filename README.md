@@ -3,13 +3,13 @@
 
 # Simple Shell Project - Command Interpreter
 
-## BACKGROUND
-This is a collaboration project between two [Holberton School](https://www.holbertonschool.com/) students 
+## Background
+This is a collaboration project of two [Holberton School](https://www.holbertonschool.com/) students 
 from Cohort 15 PER-0621, Lima Perú
 
 ## Description
 
-This project is about to create an own simple shell as a command interpreter for system.
+This project is about to create an own simple shell as a command interpreter for the operating system.
 
 ## Files
 
@@ -20,35 +20,16 @@ Where prototypes and global variables are stored.
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
 ```
-code blocks for commands
+Simply execute ./hsh
 ```
 
 ## Help
 
 Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+* Estéfano Misme
+* Sammy Sam
 
