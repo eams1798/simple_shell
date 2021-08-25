@@ -1,5 +1,4 @@
-.\" Manpage for nuseradd.
-.\" Contact vivek@nixcraft.net.in to correct errors or typos.
+.\" Manpage for hsh (holberton simple shell)
 .TH man 8 "25 Aug 2021" "1.0" "holberton Simple Shell (hsh) man page"
 .SH PROLOG
 This manual page of a Holberton Simple Shell (hsh) may differ from the standard Shell interfase (sh) of Linux
