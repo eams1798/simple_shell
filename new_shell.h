@@ -14,23 +14,19 @@ typedef struct variables
 	char **arguments;
 } vars_t;
 
-typedef struct argfunc
-{
-	char *namef;
-	void (*func)(vars_t *);
-} func_a;
-
 extern char** environ;
 int _strlen(char str[]);
+int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, int n);
+char *_strcat(char *dest, char *src);
+char* _strcpy(char* dest, const char* src);
 char *getenv_PATH();
 void add_backslash(char **paths);
 char **get_PATHS();
 char **_strtok_all(char *buffer, char *delimiter);
 char *cure_buffer(char *buffer);
 int match_sys(vars_t *vars);
-void (*match(vars_t *vars))(vars_t *);
 void file_exit(vars_t *vars);
-void list_files(vars_t *vars);
 void err_invarg(vars_t *vars);
 void free_vars(vars_t *vars);
 

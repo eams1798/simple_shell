@@ -1,27 +1,84 @@
 #include "new_shell.h"
+
 /**
- * _strlen - Calculate length of string
- * @str: String to process
- * Return: Length of given string
+ * only_one_space - remove extra blank spaces from buffer and puts the result
+ * in other string
+ * @dest: src puts the string with no extra blank spaces here
+ * @src: the string to be cleaned of extra blank spaces
+ *
+ * Return: nothing
  */
-int _strlen(char str[])
+void only_one_space(char *dest, char *src)
+{
+	int i, switcher = 0, size = _strlen(src);
+
+	for (i = 0; i <= size; i++)
+	{
+		while (switcher == 0)
+		{
+			if (*src != ' ')
+			{
+				dest[i] = *src;
+				if (*src == '\n')
+					i++;
+				src++;
+				break;
+			}
+			if ((*src == ' ')
+					&& (*(src + 1) != ' ' && *(src + 1) != '\n'))
+			{
+				dest[i] = ' ';
+				dest[i + 1] = *(src + 1);
+				i++;
+				src += 2;
+				break;
+			}
+			src++;
+		}
+		if (*src == '\0')
+			switcher = 1;
+		if (switcher == 1)
+			dest[i] = '\0';
+	}
+}
+
+/**
+ * rm_first_space - checks if the first character of the given string is a
+ * blank spaces and deletes if it is
+ * @buffer: a buffer to be checked
+ *
+ * Return: a new buffer with the correct blank spaces
+ */
+char *rm_first_space(char *buffer)
 {
 	int i;
+	char *nofs;
 
-	for (i = 0; str[i] != '\0'; i++);
-	return (i);
+	nofs = malloc(_strlen(buffer) * sizeof(char));
+	if (nofs == NULL)
+	{
+		free(nofs);
+		return (NULL);
+	}
+	for (i = 1; i <= _strlen(buffer); i++)
+	{
+		nofs[i - 1] = buffer[i];
+	}
+	free(buffer);
+	return (nofs);
 }
+
 /**
  * cure_buffer - Clean buffer of extra blank spaces
  * @buffer: Buffer to process
+ *
  * Return: buffer cured
  */
 char *cure_buffer(char *buffer)
 {
 	int i, size = _strlen(buffer);
 	char *j = buffer;
-	int switcher = 0;
-	char *cure = NULL, *nofs = NULL, *aux = NULL;
+	char *cure = NULL, *aux = NULL;
 	char *new = malloc((size + 1) * sizeof(char));
 
 	if (new == NULL)
@@ -29,57 +86,18 @@ char *cure_buffer(char *buffer)
 		free(new);
 		return (NULL);
 	}
-	for (i = 0; i <= size; i++)
-	{
-		while (switcher == 0)
-		{
-			if (*j != ' ')
-			{
-				new[i] = *j;
-				if (*j == '\n')
-					i++;
-				j++;
-				break;
-			}
-			if ((*j == ' ')
-					&& (*(j + 1) != ' ' && *(j + 1) != '\n'))
-			{
-				new[i] = ' ';
-				new[i + 1] = *(j + 1);
-				i++;
-				j += 2;
-				break;
-			}
-			j++;
-		}
-		if (*j == '\0')
-			switcher = 1;
-		if (switcher == 1)
-			new[i] = '\0';
-	}
+	only_one_space(new, j);
 	j = NULL;
 	if (new[0] == ' ' || new[0] == '\n')
-	{
-		nofs = malloc(_strlen(new) * sizeof(char));
-		if (nofs == NULL)
-		{
-			free(nofs);
-			return (NULL);
-		}
-		for (i = 1; i <= _strlen(new); i++)
-		{
-			nofs[i - 1] = new[i];
-		}
-		free(new);
-		if (*nofs == '\n' || *nofs == '\0')
-		{
-			free(nofs);
-			return (NULL);
-		}
-		aux = nofs;
-	}
+		aux = rm_first_space(new);
 	else
 		aux = new;
+	if (_strlen(aux) == 0)
+	{
+		free(aux);
+		aux = NULL;
+		return (NULL);
+	}
 	cure = malloc((1 + _strlen(aux)) * sizeof(char));
 	if (cure == NULL)
 	{
@@ -91,12 +109,61 @@ char *cure_buffer(char *buffer)
 		cure[i] = aux[i];
 	cure[i] = '\0';
 	free(aux);
-	return(cure);
+	new = NULL;
+	aux = NULL;
+	return (cure);
 }
+
 /**
- * _strok_all - Tokenize buffers with given parameter
+ * tokalloc - allocate memory space to the new array of tokens
+ * @buffer: a string to be used to create the array of tokens
+ * @delim: the delimiters to be used to separate the new tokens
+ * @ctok: the number of tokens to be created
+ *
+ * Return: 0 if the function works succesfully, or -1 on error
+ */
+char **tokalloc(char *buffer, char *delim, int ctok)
+{
+	int i, k = 0;
+	char **tokens;
+
+	tokens = malloc((ctok + 1) * sizeof(char *));
+	if (tokens == NULL)
+	{
+		free(tokens);
+		return (NULL);
+	}
+	for (i = 0; i <= ctok; i++)
+	{
+		if (*buffer == '\0')
+		{
+			tokens[i] = NULL;
+			break;
+		}
+		while (*buffer != delim[0] && *buffer != delim[1])
+		{
+			k++;
+			buffer++;
+		}
+		tokens[i] = malloc((k + 1) * sizeof(char));
+		if (tokens[i] == NULL)
+		{
+			for (; i >= 0; i--)
+				free(tokens[i]);
+			free(tokens);
+			return (NULL);
+		}
+		buffer++;
+		k = 0;
+	}
+	return (tokens);
+}
+
+/**
+ * _strtok_all - Tokenize buffers with given parameters
  * @buffer: buffer to process
- * @delimeter: string that will separate tokens
+ * @delimiter: string that will separate tokens
+ *
  * Return: Array of tokens
  */
 char **_strtok_all(char *buffer, char *delimiter)
@@ -116,35 +183,9 @@ char **_strtok_all(char *buffer, char *delimiter)
 				ctok++;
 		}
 	}
-	tokens = malloc((ctok + 1) * sizeof(char *));
+	tokens = tokalloc(ptr, delimiter, ctok);
 	if (tokens == NULL)
-	{
-		free(tokens);
 		return (NULL);
-	}
-	for (i = 0; i <= ctok; i++)
-	{
-		if (*ptr == '\0')
-		{
-			tokens[i] = NULL;
-			break;
-		}
-		while (*ptr != delimiter[0] && *ptr != delimiter[1])
-		{
-			k++;
-			ptr++;
-		}
-		tokens[i] = malloc((k + 1) * sizeof(char));
-		if (tokens[i] == NULL)
-		{
-			for (; i >= 0; i--)
-				free(tokens[i]);
-			free(tokens);
-			return (NULL);
-		}
-		ptr++;
-		k = 0;
-	}
 	ptr = NULL;
 	for (i = 0; i <= ctok; i++)
 	{
@@ -162,25 +203,4 @@ char **_strtok_all(char *buffer, char *delimiter)
 	}
 	ptr2 = NULL;
 	return (tokens);
-}
-
-func_a argf[] = {
-	{"ls", list_files},
-	{"exit", file_exit},
-	{NULL, NULL}
-};
-
-void (*match(vars_t *vars))(vars_t *)
-{
-	func_a *ptr = argf;
-
-	while(ptr->namef != NULL)
-	{
-		if (strcmp(ptr->namef, vars->arguments[0]) == 0)
-		{
-			return (ptr->func);
-		}
-		ptr++;
-	}
-	return (err_invarg);
 }

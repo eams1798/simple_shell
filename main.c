@@ -1,6 +1,9 @@
 #define _GNU_SOURCE
+#include "new_shell.h"
+
 /**
  * main - Process inputs of new shell
+ *
  * Return: Nothing
  */
 int main(void)
@@ -10,7 +13,7 @@ int main(void)
 	char *delimiter =  " \n";
 	char *buffercur;
 
-	printf("$ ");
+	write(STDOUT_FILENO, "$ ", 2);
 	while (getline(&(vars.buffer), &buffer_len, stdin) != -1)
 	{
 		buffercur = cure_buffer(vars.buffer);
@@ -19,13 +22,14 @@ int main(void)
 		free(buffercur);
 		if (vars.arguments != NULL)
 		{
-			if (strcmp(vars.arguments[0], "exit") == 0)
+			if (_strcmp(vars.arguments[0], "exit") == 0)
 				file_exit(&vars);
 			if (match_sys(&vars) == 0)
 				err_invarg(&vars);
 			free_vars(&vars);
 		}
-		printf("$ ");
+		fflush(stdin);
+		write(STDOUT_FILENO, "$ ", 2);
 	}
 	return (0);
 }
