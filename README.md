@@ -8,7 +8,8 @@ This is a collaboration project of two [Holberton School](https://www.holbertons
 
 ## Description
 
-This project is about to create an own simple shell as a command interpreter for the operating system.
+This project is about to create an own simple shell as a command interpreter for a Linux operating system and should works without any memory leaks 
+and use System Calls only when is needed.
 
 ## Files
 
@@ -42,22 +43,9 @@ Code of the following functions: getenv_PATH, add_backslash, get_PATHS, execcmd 
 Just execute ./hsh on command line.
 ```
 
-## Requirements
+## Compiling Requirements
 All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
 
-All files should end with a new line
-
-A README.md file, at the root of the folder of the project is mandatory
-
-Code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
-
-Shell should not have any memory leaks
-
-No more than 5 functions per file
-
-All header files should be include guarded
-
-Use system calls only when you need to
 
 ## Examples
 ### No interactive
