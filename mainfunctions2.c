@@ -29,7 +29,10 @@ void free_vars(vars_t *vars)
  */
 void file_exit(vars_t *vars)
 {
-	free_vars(vars);
+	if (vars->arguments != NULL)
+		free_vars(vars);
+	else
+		free(vars->buffer);
 	exit(0);
 }
 

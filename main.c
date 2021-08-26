@@ -1,6 +1,13 @@
 #define _GNU_SOURCE
 #include "new_shell.h"
 
+void sigintHandler(int sig_num)
+{
+	signal(SIGINT, sigintHandler);
+	(void)sig_num;
+	write(STDOUT_FILENO, "\n$ ", 3);
+}
+
 /**
  * main - Process inputs of new shell
  *
@@ -14,7 +21,8 @@ int main(void)
 	char *buffercur;
 
 	write(STDOUT_FILENO, "$ ", 2);
-	while (getline(&(vars.buffer), &buffer_len, stdin) != -1)
+	signal(SIGINT, sigintHandler);
+	while (getline(&(vars.buffer), &buffer_len, stdin) != EOF)
 	{
 		buffercur = cure_buffer(vars.buffer);
 		if (buffercur != NULL)
@@ -31,5 +39,6 @@ int main(void)
 		fflush(stdin);
 		write(STDOUT_FILENO, "$ ", 2);
 	}
+	file_exit(&vars);
 	return (0);
 }
