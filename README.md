@@ -28,6 +28,9 @@ Where prototypes and global variables are stored.
 * [main.c](https://github.com/estefanomisme/simple_shell/blob/main/main.c)
 Main file where receive the input and call functions to process data
 
+* [match_sys.c](https://github.com/estefanomisme/simple_shell/blob/main/match_sys.c)
+Code of the following functions: match_sys, execcmd, take_command
+
 * [mainfunctions.c](https://github.com/estefanomisme/simple_shell/blob/main/mainfunctions.c)
 Code of the following functions: _strok_all, tokalloc, cure_buffer, first_space and only_one_space
 
@@ -36,6 +39,10 @@ Code of the following functions: free_vars, file_exit, err_invarg
 
 * [environmatch.c](https://github.com/estefanomisme/simple_shell/blob/main/environmatch.c)
 Code of the following functions: getenv_PATH, add_backslash, get_PATHS, execcmd and match_sys
+
+
+## Diagram
+<img src="https://www.inmobiliares.com/external/project_simple_shell.jpg">
 
 
 ## Compiling Requirements
