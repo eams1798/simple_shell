@@ -42,7 +42,7 @@ Code of the following functions: getenv_PATH, add_backslash, get_PATHS, execcmd 
 All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
 
 
-### Executing program
+## Executing program
 
 ```
 Just execute ./hsh on command line.
