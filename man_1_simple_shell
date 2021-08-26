@@ -1,4 +1,4 @@
-.\" Manpage for hsh (holberton simple shell 2021)
+.\" Manpage for hsh Project (holberton simple shell 2021)
 .TH man 8 "25 Aug 2021" "1.0" "holberton Simple Shell (hsh) man page"
 .SH PROLOG
 This manual page of a Holberton Simple Shell (hsh) may differ from the standard Shell interfase (sh) of Linux
