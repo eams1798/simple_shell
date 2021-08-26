@@ -50,7 +50,7 @@ void add_backslash(char **paths)
 /**
  * get_PATHS - get and tokenizes paths
  *
- * Return: Token of Paths
+ * Return: token of Paths
  */
 char **get_PATHS()
 {
