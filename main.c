@@ -20,7 +20,8 @@ int main(void)
 	char *delimiter =  " \n";
 	char *buffercur;
 
-	write(STDOUT_FILENO, "$ ", 2);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
 	signal(SIGINT, sigintHandler);
 	while (getline(&(vars.buffer), &buffer_len, stdin) != EOF)
 	{
@@ -37,7 +38,8 @@ int main(void)
 			free_vars(&vars);
 		}
 		fflush(stdin);
-		write(STDOUT_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
 	}
 	file_exit(&vars);
 	return (0);
