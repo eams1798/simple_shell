@@ -39,7 +39,8 @@ Code of the following functions: getenv_PATH, add_backslash, get_PATHS, execcmd 
 
 
 ## Compiling Requirements
-All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89 and should 
+compile all c files on this repository
 
 
 ## Executing program
