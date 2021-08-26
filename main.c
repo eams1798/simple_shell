@@ -9,7 +9,7 @@ void sigintHandler(int sig_num)
 }
 
 /**
- * main - Process inputs of new shell
+ * main - Process inputs of the new shell
  *
  * Return: Nothing
  */
