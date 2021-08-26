@@ -25,7 +25,7 @@ void free_vars(vars_t *vars)
  * file_exit - Exit program
  * @vars: Struct with buffer elements
  *
- * Return: Nothing
+ * Return: nothing
  */
 void file_exit(vars_t *vars)
 {
