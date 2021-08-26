@@ -21,57 +21,39 @@ Pathname expansion shall not fail due to the size of a file.
 .PP
 Shell input and output redirections have an implementation-defined offset maximum that is established in the open file description.
 .SH OPTIONS
-The hsh utility shall conform to the Base Definitions volume of POSIX.1-2017, Section 12.2, Utility Syntax Guidelines, 
-with an extension for support of a leading <plus-sign> ('+') as noted below.
+The hsh utility shall conform to the Base Definitions volume of POSIX.1-2017, Section 12.2, Utility Syntax Guidelines, with an extension for support of a leading <plus-sign> ('+') as noted below.
 .PP
-The -a, -b, -C, -e, -f, -m, -n, -o option, -u, -v, and -x options are described as part of the set utility in Section 2.14, 
-Special Built-In Utilities.  The option letters derived from the set special built-in shall also be accepted with a leading 
-<plus-sign> ('+') instead of a leading <hyphen-minus> (meaning the reverse case of the option as described in this volume 
-of POSIX.1-2017).
+The -a, -b, -C, -e, -f, -m, -n, -o option, -u, -v, and -x options are described as part of the set utility in Section 2.14, Special Built-In Utilities.  The option letters derived from the set special built-in shall also be accepted with a leading <plus-sign> ('+') instead of a leading <hyphen-minus> (meaning the reverse case of the option as described in this volume of POSIX.1-2017).
 .PP
 The following additional options shall be supported:
 .IP -c
-Read commands from the command_string operand. Set the value of special parameter 0 (see Section 2.5.2, Special Parameters) 
-from the value of the command_name operand and the positional parameters ($1, $2, and so on) in sequence from the remaining 
-argument operands. No commands shall be read from the standard input.
+Read commands from the command_string operand. Set the value of special parameter 0 (see Section 2.5.2, Special Parameters) from the value of the command_name operand and the positional parameters ($1, $2, and so on) in sequence from the remaining argument operands. No commands shall be read from the standard input.
 .IP -i
-Specify that the shell is interactive; see below. An implementation may treat specifying the -i option as an error if the 
-real user ID of the calling process does not equal the effective user ID or if the real group ID does not equal the effective 
-group ID.
+Specify that the shell is interactive; see below. An implementation may treat specifying the -i option as an error if the real user ID of the calling process does not equal the effective user ID or if the real group ID does not equal the effective group ID.
 .IP -s
 Read commands from the standard input.
 .PP
 If there are no operands and the -c option is not specified, the -s option shall be assumed.
 .PP
-If the -i option is present, or if there are no operands and the shell's standard input and standard error are attached to a 
-terminal, the shell is considered to be interactive. 
+If the -i option is present, or if there are no operands and the shell's standard input and standard error are attached to a terminal, the shell is considered to be interactive.
 .SH OPERANDS
 The following operands shall be supported:
 .IP -
-A single <hyphen-minus> shall be treated as the first operand and then ignored. If both '-' and "--" are given as arguments, 
-or if other operands precede the single <hyphen-minus>, the results are undefined.
+A single <hyphen-minus> shall be treated as the first operand and then ignored. If both '-' and "--" are given as arguments, or if other operands precede the single <hyphen-minus>, the results are undefined.
 .IP argument
 The positional parameters ($1, $2, and so on) shall be set to arguments, if any.
 .IP command_file
-The pathname of a file containing commands. If the pathname contains one or more <slash> characters, the implementation 
-attempts to read that file; the file need not be executable. If the pathname does not contain a <slash> character:
+The pathname of a file containing commands. If the pathname contains one or more <slash> characters, the implementation attempts to read that file; the file need not be executable. If the pathname does not contain a <slash> character:
 .IP
 *  The implementation shall attempt to read that file from the current working directory; the file need not be executable.
 .IP
-*  If the file is not in the current working directory, the implementation may perform a search for an executable file 
-using the value of PATH, as described in Section 2.9.1.1, Command Search and Execution.
+*  If the file is not in the current working directory, the implementation may perform a search for an executable file using the value of PATH, as described in Section 2.9.1.1, Command Search and Execution.
 .IP
-Special parameter 0 (see Section 2.5.2, Special Parameters) shall be set to the value of command_file. If hsh is called 
-using a synopsis form that omits command_file, special parameter 0 shall be set to the value of the first argument passed 
-to hsh from its parent (for example, argv[0] for a C program), which is normally a pathname used to execute the hsh utility.
+Special parameter 0 (see Section 2.5.2, Special Parameters) shall be set to the value of command_file. If hsh is called using a synopsis form that omits command_file, special parameter 0 shall be set to the value of the first argument passed to hsh from its parent (for example, argv[0] for a C program), which is normally a pathname used to execute the hsh utility.
 .IP command_name
-A string assigned to special parameter 0 when executing the commands in command_string.  If command_name is not specified, 
-special parameter 0 shall be set to the	value of the first argument passed to hsh from its parent (for example, argv[0] 
-for a C program), which is normally a pathname used to execute the hsh utility.
+A string assigned to special parameter 0 when executing the commands in command_string.  If command_name is not specified, special parameter 0 shall be set to the	value of the first argument passed to hsh from its parent (for example, argv[0] for a C program), which is normally a pathname used to execute the hsh utility.
 .IP command_string
-A string that shall be interpreted by the shell as one or more commands, as if the string were the argument to the system() 
-function defined in the System Interfaces volume of POSIX.1-2017. If the command_string operand	is an empty string, hsh shall 
-exit with a zero exit status.
+A string that shall be interpreted by the shell as one or more commands, as if the string were the argument to the system() function defined in the System Interfaces volume of POSIX.1-2017. If the command_string operand	is an empty string, hsh shall exit with a zero exit status.
 .SH STDIN
 The standard input shall be used only if one of the following is true:
 .PP
@@ -79,36 +61,23 @@ The standard input shall be used only if one of the following is true:
 .PP
 *  The -c option is not specified and no operands are specified.
 .PP
-*  The script executes one or more commands that require input from standard input (such as a read command that does not 
-redirect its input).
+*  The script executes one or more commands that require input from standard input (such as a read command that does not redirect its input).
 .PP
 See the INPUT FILES section
 .PP
-When the shell is using standard input and it invokes a command that also uses standard input, the shell shall ensure 
-that the standard input file pointer points directly after the command it has read when the command begins execution. 
-It shall not read ahead in such a manner that any characters intended to be read by the invoked command are consumed 
-by the shell (whether interpreted by the shell or not) or that characters that are not read by the invoked command are
- not seen by the shell. When the command expecting to read standard input is started asynchronously by an interactive 
-shell, it is unspecified whether characters are read by the command or interpreted by the shell.
+When the shell is using standard input and it invokes a command that also uses standard input, the shell shall ensure that the standard input file pointer points directly after the command it has read when the command begins execution. It shall not read ahead in such a manner that any characters intended to be read by the invoked command are consumed by the shell (whether interpreted by the shell or not) or that characters that are not read by the invoked command are not seen by the shell. When the command expecting to read standard input is started asynchronously by an interactive shell, it is unspecified whether characters are read by the command or interpreted by the shell.
 .PP
-If the standard input to hsh is a FIFO or terminal device and is	set to non-blocking reads, then hsh shall enable blocking 
-reads on standard input. This shall remain in effect when the command completes.
+If the standard input to hsh is a FIFO or terminal device and is	set to non-blocking reads, then hsh shall enable blocking reads on standard input. This shall remain in effect when the command completes.
 .SH INPUT FILES
-The input file shall be a text file, except that line lengths shall be unlimited. If the input file consists solely of 
-zero or more blank lines and comments, hsh shall exit with a zero exit status.
+The input file shall be a text file, except that line lengths shall be unlimited. If the input file consists solely of zero or more blank lines and comments, hsh shall exit with a zero exit status.
 .SH ENVIRONMENT VARIABLES
 The following environment variables shall affect the execution of hsh:
 .IP ENV
-This variable, when and only when an interactive shell is invoked, shall be subjected to parameter expansion (see Section 
-2.6.2, Parameter Expansion) by the shell, and the resulting value shall be used as a pathname of a file containing shell 
-commands to execute in the current environment.  The file need not be executable. If the expanded value of ENV is not an 
-absolute pathname, the results are unspecified.  ENV shall be ignored if the real and effective user IDs or real and
-effective group IDs of the process are different.
+This variable, when and only when an interactive shell is invoked, shall be subjected to parameter expansion (see Section 2.6.2, Parameter Expansion) by the shell, and the resulting value shall be used as a pathname of a file containing shell commands to execute in the current environment.  The file need not be executable. If the expanded value of ENV is not an absolute pathname, the results are unspecified.  ENV shall be ignored if the real and effective user IDs or real and effective group IDs of the process are different.
 .SH STDOUT
 See the STDERR section.
 .SH STDERR
-Except as otherwise stated (by the descriptions of any invoked utilities or in interactive mode), standard error shall 
-be used only for diagnostic messages.
+Except as otherwise stated (by the descriptions of any invoked utilities or in interactive mode), standard error shall be used only for diagnostic messages.
 .SHOUTPUT FILES
 None.
 .SH EXIT STATUS
@@ -116,11 +85,9 @@ The following exit values shall be returned:
 .IP 0
 The script to be executed consisted solely of zero or more blank lines or comments, or both.
 .IP 1-125
-A non-interactive shell detected an error other than command_file not found or executable, including but not
-limited to syntax, redirection, or variable assignment errors.
+A non-interactive shell detected an error other than command_file not found or executable, including but not limited to syntax, redirection, or variable assignment errors.
 .PP
-Otherwise, the shell shall return the exit status of the last command it invoked or attempted to invoke (see also 
-the exit utility in Section 2.14, Special Built-In Utilities).
+Otherwise, the shell shall return the exit status of the last command it invoked or attempted to invoke (see also the exit utility in Section 2.14, Special Built-In Utilities).
 .SH EXAMPLES
 1. Execute a shell command from a string:
 .IP

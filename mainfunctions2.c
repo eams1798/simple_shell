@@ -41,6 +41,15 @@ void file_exit(vars_t *vars)
  */
 void err_invarg(vars_t *vars)
 {
-	write(STDOUT_FILENO, vars->arguments[0], strlen(vars->arguments[0]));
-	write(STDOUT_FILENO, ": command not found\n", 20);
+	if (vars->arguments[0][0] != '/')
+	{
+		write(STDOUT_FILENO, vars->arguments[0], strlen(vars->arguments[0]));
+		write(STDOUT_FILENO, ": command not found\n", 20);
+	}
+	else
+	{
+		write(STDOUT_FILENO, "-bash: ", 7);
+		write(STDOUT_FILENO, vars->arguments[0], strlen(vars->arguments[0]));
+		write(STDOUT_FILENO, ": No such file or directory\n", 28);
+	}
 }
