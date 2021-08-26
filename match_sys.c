@@ -7,7 +7,7 @@
  * execcmd - execute a command in a new process
  * @cmdpath: a string with the command and the path
  * @vars: a struct with the arguments of the given command
- * @envp: the environment of the system
+ * @envp: environment of the system
  *
  * Return: 1 in the main process, it means the function works
  */
