@@ -6,7 +6,7 @@
  * @dest: src puts the string with no extra blank spaces here
  * @src: the string to be cleaned of extra blank spaces
  *
- * Return: nothing
+ * Return: Nothing
  */
 void only_one_space(char *dest, char *src)
 {
