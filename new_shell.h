@@ -14,7 +14,7 @@
  * @buffer: the text of the given line
  * @arguments: the line converted in many arguments to use in a program
  *
- * Description: stores the content of a line converts it in arguments for a
+ * Description: stores content of a line converts it in arguments for a
  * program
  */
 typedef struct variables
