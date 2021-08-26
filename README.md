@@ -9,7 +9,7 @@ This is a collaboration project of two [Holberton School](https://www.holbertons
 ## Description
 
 This project is about to create an own simple shell as a command interpreter for a Linux operating system and should works without any memory leaks 
-and use System Calls only when is needed.
+and have used System Calls only when is needed.
 
 ## Files
 
@@ -37,15 +37,16 @@ Code of the following functions: free_vars, file_exit, err_invarg
 * [environmatch.c](https://github.com/estefanomisme/simple_shell/blob/main/environmatch.c)
 Code of the following functions: getenv_PATH, add_backslash, get_PATHS, execcmd and match_sys
 
+
+## Compiling Requirements
+All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+
+
 ### Executing program
 
 ```
 Just execute ./hsh on command line.
 ```
-
-## Compiling Requirements
-All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
-
 
 ## Examples
 ### No interactive
