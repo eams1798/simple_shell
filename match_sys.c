@@ -41,7 +41,7 @@ char *take_command(char *cmd, char *path)
 	int szcmd = _strlen(cmd), szpth = _strlen(path), newsz;
 	char *command;
 
-	if (cmd[0] != '/')
+	if (cmd[0] != '/' && cmd[0] != '.')
 	{
 		newsz = (szpth + szcmd + 1) * sizeof(char);
 		command = malloc(newsz);
